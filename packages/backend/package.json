@@ -1,0 +1,32 @@
+{
+  "name": "@filebrowser/backend",
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup --minify",
+    "lint": "eslint src --fix",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "fastify": "^4.26.2"
+  },
+  "devDependencies": {
+    "pino-pretty": "^11.0.0"
+  }
+}
