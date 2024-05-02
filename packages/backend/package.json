@@ -18,15 +18,14 @@
     }
   },
   "scripts": {
-    "dev": "tsup --watch",
-    "build": "tsup --minify",
+    "dev": "tsup --config tsup.config.dev.ts",
+    "start": "node dist-dev/dev.js",
+    "build": "tsup --config tsup.config.prod.ts",
     "lint": "eslint src --fix",
     "test": "vitest"
   },
   "dependencies": {
-    "fastify": "^4.26.2"
-  },
-  "devDependencies": {
+    "fastify": "^4.26.2",
     "pino-pretty": "^11.0.0"
   }
 }
