@@ -1,4 +1,4 @@
-import { SUCCESS_CODE, SUCCESS_MESSAGE } from './constants'
+import { SUCCESS_CODE, SUCCESS_MESSAGE } from '@/server/constants'
 import type { UniformResponse } from './types'
 
 export function createUniformResponse<T>(data: T, code?: number, message?: string): UniformResponse<T> {

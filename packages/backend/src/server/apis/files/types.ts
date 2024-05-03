@@ -5,3 +5,7 @@ export interface FileInfo {
   createdAt: number
   type?: 'file' | 'directory'
 }
+
+export interface RequestQuery {
+  subPath?: string
+}
