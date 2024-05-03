@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify'
 
-import type { FilesQuery } from '@filebrowser/shared'
+import { FilesQuery, FilesApiPath } from '@filebrowser/shared'
 
 import { BusinessError, createUniformResponse } from '@/server/helpers'
 
@@ -16,7 +16,7 @@ import { validatePathIsDirectory, validatePathIsFile } from './validators'
 export function registerApiFiles(fastify: FastifyInstance, options: RegisterApisOptions) {
   const { root } = options
 
-  fastify.get('/files', async (request, reply) => {
+  fastify.get(FilesApiPath.GetFileInfoList, async (request, reply) => {
     const resolvedPath = resolvePathFromQuery(root, request.query as FilesQuery)
     await validatePathIsDirectory(resolvedPath)
 
@@ -25,14 +25,14 @@ export function registerApiFiles(fastify: FastifyInstance, options: RegisterApis
     reply.send(createUniformResponse({ fileInfoList }))
   })
 
-  fastify.get('/files/download', async (request, reply) => {
+  fastify.get(FilesApiPath.DownloadFile, async (request, reply) => {
     const resolvedPath = resolvePathFromQuery(root, request.query as FilesQuery)
     await validatePathIsFile(resolvedPath)
 
     reply.download(resolvedPath)
   })
 
-  fastify.post('/files/upload', async (request, reply) => {
+  fastify.post(FilesApiPath.UploadFile, async (request, reply) => {
     const directoryPath = resolvePathFromQuery(root, request.query as FilesQuery)
     await validatePathIsDirectory(directoryPath)
 
