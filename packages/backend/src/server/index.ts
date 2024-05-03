@@ -4,15 +4,14 @@ import { RegisterApisOptions, registerApis } from './apis'
 import { setupGlobalErrorHandler } from './global-error-handler'
 import { StartServerOptions } from './types'
 import { DEFAULT_START_SERVER_OPTIONS } from './constants'
+import { registerMiddlewares } from './middlewares'
 
 export async function startServer(options?: StartServerOptions) {
-  const {
-    port = DEFAULT_START_SERVER_OPTIONS.port,
-    directoryToBrowse = DEFAULT_START_SERVER_OPTIONS.directoryToBrowse,
-  } = options ?? DEFAULT_START_SERVER_OPTIONS
+  const { port = DEFAULT_START_SERVER_OPTIONS.port, root = DEFAULT_START_SERVER_OPTIONS.root } =
+    options ?? DEFAULT_START_SERVER_OPTIONS
 
   const registerApisOptions: RegisterApisOptions = {
-    directoryToBrowse,
+    root,
   }
 
   const fastify = Fastify({
@@ -29,6 +28,9 @@ export async function startServer(options?: StartServerOptions) {
 
   // 全局异常处理
   setupGlobalErrorHandler(fastify)
+
+  // 注册中间件
+  registerMiddlewares(fastify, root)
 
   // 注册 api
   registerApis(fastify, registerApisOptions)
