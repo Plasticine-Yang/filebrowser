@@ -1,7 +1,7 @@
 import { readdir, stat } from 'fs/promises'
 import { join } from 'path'
 
-import type { FileInfo } from '../types'
+import type { FileInfo } from '@filebrowser/shared'
 
 export async function getFileInfoList(directoryPath: string): Promise<FileInfo[]> {
   const fileNameList = await readdir(directoryPath)

@@ -1,14 +1,15 @@
 import Fastify from 'fastify'
 
+import { BACKEND_PORT } from '@filebrowser/shared'
+
 import { RegisterApisOptions, registerApis } from './apis'
-import { setupGlobalErrorHandler } from './global-error-handler'
-import { StartServerOptions } from './types'
 import { DEFAULT_START_SERVER_OPTIONS } from './constants'
+import { setupGlobalErrorHandler } from './global-error-handler'
 import { registerMiddlewares } from './middlewares'
+import { StartServerOptions } from './types'
 
 export async function startServer(options?: StartServerOptions) {
-  const { port = DEFAULT_START_SERVER_OPTIONS.port, root = DEFAULT_START_SERVER_OPTIONS.root } =
-    options ?? DEFAULT_START_SERVER_OPTIONS
+  const { root = DEFAULT_START_SERVER_OPTIONS.root } = options ?? DEFAULT_START_SERVER_OPTIONS
 
   const registerApisOptions: RegisterApisOptions = {
     root,
@@ -36,8 +37,8 @@ export async function startServer(options?: StartServerOptions) {
   registerApis(fastify, registerApisOptions)
 
   try {
-    await fastify.listen({ port })
+    await fastify.listen({ port: BACKEND_PORT })
   } catch (error) {
-    fastify.log.error(error, `listen port: ${port} failed`)
+    fastify.log.error(error, `listen port: ${BACKEND_PORT} failed`)
   }
 }

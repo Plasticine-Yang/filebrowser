@@ -1,5 +1,6 @@
+import type { UniformResponse } from '@filebrowser/shared'
+
 import { SUCCESS_CODE, SUCCESS_MESSAGE } from '@/server/constants'
-import type { UniformResponse } from './types'
 
 export function createUniformResponse<T>(data: T, code?: number, message?: string): UniformResponse<T> {
   return {
@@ -8,5 +9,3 @@ export function createUniformResponse<T>(data: T, code?: number, message?: strin
     data,
   }
 }
-
-export type { UniformResponse } from './types'
