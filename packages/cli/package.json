@@ -7,6 +7,9 @@
     "package.json",
     "README.md"
   ],
+  "bin": {
+    "filebrowser": "./bin/filebrowser.js"
+  },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",

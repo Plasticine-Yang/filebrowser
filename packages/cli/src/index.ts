@@ -8,7 +8,7 @@ import packageJson from '../package.json'
 
 const cli = cac('filebrowser')
 
-cli.command('<root>', 'Share files in root directory.').action(async (root: string) => {
+cli.command('[root]', 'Share files in root directory.').action(async (root = process.cwd()) => {
   const resolvedRoot = resolve(root)
   const frontendModulePath = fileURLToPath(import.meta.resolve('@filebrowser/frontend'))
   const frontendDistPath = resolve(frontendModulePath, '..')
