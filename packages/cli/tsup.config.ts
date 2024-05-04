@@ -8,5 +8,5 @@ export default defineConfig({
   clean: true,
   shims: true,
   sourcemap: true,
-  minify: true,
+  external: ['fastify', 'resolve'],
 })

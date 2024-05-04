@@ -3,7 +3,7 @@
   "changelog": "@changesets/cli/changelog",
   "commit": false,
   "fixed": [],
-  "linked": [],
+  "linked": [["@filebrowser/backend", "@filebrowser/cli", "@filebrowser/frontend", "@filebrowser/shared"]],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",

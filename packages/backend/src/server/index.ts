@@ -24,6 +24,7 @@ export async function startServer(options?: StartServerOptions) {
           ignore: 'pid,hostname',
         },
       },
+      msgPrefix: '[Backend] ',
     },
   })
 

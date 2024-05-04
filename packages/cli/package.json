@@ -19,8 +19,15 @@
   },
   "scripts": {
     "dev": "tsup --watch",
+    "start": "node dist/index.js",
     "build": "tsup --minify",
     "lint": "eslint src --fix",
     "test": "vitest"
+  },
+  "dependencies": {
+    "@filebrowser/backend": "workspace:^",
+    "@filebrowser/frontend": "workspace:^",
+    "cac": "^6.7.14",
+    "serve": "^14.2.3"
   }
 }
