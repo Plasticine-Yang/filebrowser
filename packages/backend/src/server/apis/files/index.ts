@@ -26,10 +26,11 @@ export function registerApiFiles(fastify: FastifyInstance, options: RegisterApis
   })
 
   fastify.get(FilesApiPath.DownloadFile, async (request, reply) => {
-    const resolvedPath = resolvePathFromQuery(root, request.query as FilesQuery)
+    const query = request.query as FilesQuery
+    const resolvedPath = resolvePathFromQuery(root, query)
     await validatePathIsFile(resolvedPath)
 
-    reply.download(resolvedPath)
+    return reply.download(query.subPath!)
   })
 
   fastify.post(FilesApiPath.UploadFile, async (request, reply) => {
