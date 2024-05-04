@@ -37,7 +37,7 @@ export async function startServer(options?: StartServerOptions) {
   registerApis(fastify, registerApisOptions)
 
   try {
-    await fastify.listen({ port: BACKEND_PORT })
+    await fastify.listen({ host: '0.0.0.0', port: BACKEND_PORT })
   } catch (error) {
     fastify.log.error(error, `listen port: ${BACKEND_PORT} failed`)
   }
