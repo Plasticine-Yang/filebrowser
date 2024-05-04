@@ -30,6 +30,10 @@
     "@fastify/static": "^7.0.2",
     "@filebrowser/shared": "workspace:^",
     "fastify": "^4.26.2",
-    "pino-pretty": "^11.0.0"
+    "pino-pretty": "^11.0.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.8"
   }
 }
