@@ -16,5 +16,14 @@ export function createClipboardHistoryManager() {
     clipboardHistoryList = clipboardHistoryList.filter((clipboardHistory) => clipboardHistory.id !== id)
   }
 
-  return { getClipboardHistoryDescOrderedByCreatedAt, createClipboardHistory, deleteClipboardHistory }
+  const clearClipboardHistory = () => {
+    clipboardHistoryList = []
+  }
+
+  return {
+    getClipboardHistoryDescOrderedByCreatedAt,
+    createClipboardHistory,
+    deleteClipboardHistory,
+    clearClipboardHistory,
+  }
 }
