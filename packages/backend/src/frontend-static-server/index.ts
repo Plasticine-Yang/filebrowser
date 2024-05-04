@@ -9,16 +9,7 @@ export async function startFrontendStaticServer(options: StartFrontendStaticServ
   const { root } = options
 
   const fastify = Fastify({
-    logger: {
-      transport: {
-        target: 'pino-pretty',
-        options: {
-          translateTime: 'SYS:yyyy-mm-dd HH:MM:ss.l',
-          ignore: 'pid,hostname',
-        },
-      },
-      msgPrefix: '[Frontend] ',
-    },
+    logger: false,
   })
 
   // 注册中间件

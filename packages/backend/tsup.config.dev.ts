@@ -8,4 +8,7 @@ export default defineConfig({
   clean: true,
   shims: true,
   sourcemap: true,
+  define: {
+    __DEV__: 'true',
+  },
 })

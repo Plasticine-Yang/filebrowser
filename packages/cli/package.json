@@ -30,7 +30,9 @@
   "dependencies": {
     "@filebrowser/backend": "workspace:^",
     "@filebrowser/frontend": "workspace:^",
+    "@filebrowser/shared": "workspace:^",
     "cac": "^6.7.14",
+    "chalk": "^5.3.0",
     "serve": "^14.2.3"
   }
 }

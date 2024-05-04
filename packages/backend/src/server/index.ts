@@ -16,16 +16,17 @@ export async function startServer(options?: StartServerOptions) {
   }
 
   const fastify = Fastify({
-    logger: {
-      transport: {
-        target: 'pino-pretty',
-        options: {
-          translateTime: 'SYS:yyyy-mm-dd HH:MM:ss.l',
-          ignore: 'pid,hostname',
-        },
-      },
-      msgPrefix: '[Backend] ',
-    },
+    logger: __DEV__
+      ? {
+          transport: {
+            target: 'pino-pretty',
+            options: {
+              translateTime: 'SYS:yyyy-mm-dd HH:MM:ss.l',
+              ignore: 'pid,hostname',
+            },
+          },
+        }
+      : false,
   })
 
   // 全局异常处理

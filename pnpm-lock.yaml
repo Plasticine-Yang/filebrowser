@@ -102,9 +102,15 @@ importers:
       '@filebrowser/frontend':
         specifier: workspace:^
         version: link:../frontend
+      '@filebrowser/shared':
+        specifier: workspace:^
+        version: link:../shared
       cac:
         specifier: ^6.7.14
         version: 6.7.14
+      chalk:
+        specifier: ^5.3.0
+        version: 5.3.0
       serve:
         specifier: ^14.2.3
         version: 14.2.3

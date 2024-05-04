@@ -8,5 +8,7 @@ export default defineConfig({
   clean: true,
   shims: true,
   sourcemap: true,
-  minify: true,
+  define: {
+    __DEV__: 'false',
+  },
 })
