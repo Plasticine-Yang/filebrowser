@@ -1,10 +1,12 @@
 import { produce } from 'immer'
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
 import { ROOT_DIRECTORY } from '../constants'
 
 export function useDirectoryPath() {
   const [path, setPath] = useState<string[]>([ROOT_DIRECTORY])
+
+  const pathForBackendApi = useMemo(() => path.filter((directory) => directory !== ROOT_DIRECTORY).join('/'), [path])
 
   const changePath = useCallback((directory: string) => {
     setPath((prevPath) =>
@@ -21,5 +23,5 @@ export function useDirectoryPath() {
     )
   }, [])
 
-  return { path, changePath }
+  return { path, pathForBackendApi, changePath }
 }

@@ -2,13 +2,16 @@ import { FileItemProps } from '@/components'
 import { useCallback } from 'react'
 
 import { useDirectoryPath } from './use-directory-path'
+import { useFileModal } from './use-file-modal'
 
 interface UseFileChangePathProps {
   changePath: ReturnType<typeof useDirectoryPath>['changePath']
+  setCurrentFileInfo: ReturnType<typeof useFileModal>['setCurrentFileInfo']
+  openModal: ReturnType<typeof useFileModal>['openModal']
 }
 
-export function useFileChangePath(props: UseFileChangePathProps) {
-  const { changePath } = props
+export function useFileItem(props: UseFileChangePathProps) {
+  const { changePath, setCurrentFileInfo, openModal } = props
 
   const handleFileItemClick = useCallback<FileItemProps['onClick']>(
     (fileInfo) => {
@@ -16,6 +19,8 @@ export function useFileChangePath(props: UseFileChangePathProps) {
 
       switch (type) {
         case 'file':
+          setCurrentFileInfo(fileInfo)
+          openModal()
           break
 
         case 'directory':
@@ -26,7 +31,7 @@ export function useFileChangePath(props: UseFileChangePathProps) {
           break
       }
     },
-    [changePath],
+    [changePath, openModal, setCurrentFileInfo],
   )
 
   return { handleFileItemClick }
