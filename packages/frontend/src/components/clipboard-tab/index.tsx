@@ -1,5 +1,5 @@
 import { useMount } from 'ahooks'
-import { Button, Flex, Input, Space, Table } from 'antd'
+import { Button, Divider, Flex, Input, Space, Table } from 'antd'
 import { memo, type FC } from 'react'
 
 import { useClipboardHistory } from './hooks'
@@ -10,10 +10,12 @@ export const ClipboardTab: FC = memo(() => {
     clipboardHistoryList,
     clipboardHistoryLoading,
     clipboardHistoryCreating,
+    clipboardHistoryListClearing,
     clipboardInputValue,
     loadClipboardHistoryList,
     handleClipboardInputValueChange,
     handleCreateClipboardHistory,
+    handleClearClipboardHistoryList,
   } = useClipboardHistory()
 
   useMount(() => {
@@ -32,6 +34,19 @@ export const ClipboardTab: FC = memo(() => {
       <Flex justify="flex-end">
         <Button type="primary" loading={clipboardHistoryCreating} onClick={() => handleCreateClipboardHistory()}>
           创建
+        </Button>
+      </Flex>
+
+      <Divider />
+
+      <Flex>
+        <Button
+          danger
+          type="primary"
+          loading={clipboardHistoryListClearing}
+          onClick={() => handleClearClipboardHistoryList()}
+        >
+          清空剪切板历史记录
         </Button>
       </Flex>
 

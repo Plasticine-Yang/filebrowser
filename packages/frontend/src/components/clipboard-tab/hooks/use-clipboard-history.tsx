@@ -3,6 +3,7 @@ import { useMemo } from 'react'
 
 import { ClipboardHistory } from '@filebrowser/shared'
 
+import { useClearClipboardHistory } from './use-clear-clipboard-history'
 import { useClipboardHistoryList } from './use-clipboard-history-list'
 import { useCopyClipboardHistory } from './use-copy-clipboard-history'
 import { useCreateClipboardHistory } from './use-create-clipboard-history'
@@ -17,6 +18,9 @@ export function useClipboardHistory() {
     handleCreateClipboardHistory,
   } = useCreateClipboardHistory({ loadClipboardHistoryList })
   const { deleteing, handleDeleteClipboardHistory } = useDeleteClipboardHistory({ loadClipboardHistoryList })
+  const { clipboardHistoryListClearing, handleClearClipboardHistoryList } = useClearClipboardHistory({
+    loadClipboardHistoryList,
+  })
   const { copying, handleCopyClipboardHistory } = useCopyClipboardHistory()
 
   const tableColumns = useMemo<TableColumnsType<ClipboardHistory>>(() => {
@@ -53,9 +57,11 @@ export function useClipboardHistory() {
     clipboardHistoryList,
     clipboardHistoryLoading,
     clipboardHistoryCreating,
+    clipboardHistoryListClearing,
     clipboardInputValue,
     loadClipboardHistoryList,
     handleClipboardInputValueChange,
     handleCreateClipboardHistory,
+    handleClearClipboardHistoryList,
   }
 }
