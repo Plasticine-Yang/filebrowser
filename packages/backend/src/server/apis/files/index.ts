@@ -40,7 +40,7 @@ export function registerApiFiles(fastify: FastifyInstance, options: RegisterApis
     const multipart = await request.file()
 
     if (multipart) {
-      await saveToDirectory(directoryPath, multipart)
+      saveToDirectory(directoryPath, multipart)
       reply.send(createUniformResponse(null))
 
       return

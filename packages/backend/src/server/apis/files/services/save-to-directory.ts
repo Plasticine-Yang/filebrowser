@@ -1,9 +1,9 @@
 import type { MultipartFile } from '@fastify/multipart'
-import { writeFile } from 'fs/promises'
+import { createWriteStream } from 'fs'
 import { join } from 'path'
 
-export async function saveToDirectory(directoryPath: string, multipart: MultipartFile) {
+export function saveToDirectory(directoryPath: string, multipart: MultipartFile) {
   const filePathToSave = join(directoryPath, multipart.filename)
 
-  await writeFile(filePathToSave, multipart.file)
+  multipart.file.pipe(createWriteStream(filePathToSave))
 }
