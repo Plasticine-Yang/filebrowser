@@ -1,5 +1,11 @@
 # @filebrowser/frontend
 
+## 0.1.1
+
+### Patch Changes
+
+- @filebrowser/shared@0.1.1
+
 ## 0.1.0
 
 ### Minor Changes
