@@ -1,29 +1,35 @@
 import { memo, type FC } from 'react'
 
-import { Col, Row, Space, Spin } from 'antd'
+import { Button, Col, Row, Space, Spin } from 'antd'
 
 import { DirectoryPath } from '../directory-path'
 import { FileItem } from '../file-item'
+import { FileModal } from '../file-modal'
 import {
   useDirectoryPath,
-  useFileItem,
   useFileInfoList,
-  useLinkDirectoryPathAndFileInfoList,
+  useFileItem,
   useFileModal,
+  useLinkDirectoryPathAndFileInfoList,
+  useUpload,
 } from './hooks'
-import { FileModal } from '../file-modal'
 
 export const FileTab: FC = memo(() => {
   const { path, pathForBackendApi, changePath } = useDirectoryPath()
   const { fileInfoList, fileInfoListLoading, loadFileInfoList } = useFileInfoList()
   const { open, currentFileInfo, setCurrentFileInfo, openModal, closeModal } = useFileModal()
   const { handleFileItemClick } = useFileItem({ changePath, setCurrentFileInfo, openModal })
+  const { uploading, handleUploadButtonClick } = useUpload({ pathForBackendApi, loadFileInfoList })
 
   useLinkDirectoryPathAndFileInfoList({ pathForBackendApi, loadFileInfoList })
 
   return (
     <>
       <Space direction="vertical" size="middle" style={{ width: '100%', paddingBottom: '2em' }}>
+        <Button type="primary" onClick={handleUploadButtonClick}>
+          上传文件
+        </Button>
+
         <DirectoryPath path={path} onChange={changePath} />
 
         {fileInfoListLoading ? (
@@ -47,6 +53,8 @@ export const FileTab: FC = memo(() => {
         currentDirectoryPath={pathForBackendApi}
         onClose={closeModal}
       />
+
+      <Spin fullscreen spinning={uploading} />
     </>
   )
 })

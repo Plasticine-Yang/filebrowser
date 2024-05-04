@@ -2,7 +2,8 @@ import { Button, Input, Modal, QRCode, Space } from 'antd'
 import { memo, useMemo, type FC } from 'react'
 
 import { BACKEND_API_BASE_URL } from '@/helpers/request/constants'
-import { FileInfo } from '@filebrowser/shared'
+import { FileInfo, FilesApiPath } from '@filebrowser/shared'
+
 import { useDownload } from './hooks'
 
 interface FileModalProps {
@@ -18,7 +19,7 @@ export const FileModal: FC<FileModalProps> = memo((props) => {
   const filename = useMemo(() => currentFileInfo?.name ?? 'unknown', [currentFileInfo?.name])
   const currentFilePath = useMemo(() => `${currentDirectoryPath}/${filename}`, [currentDirectoryPath, filename])
   const downloadLink = useMemo(
-    () => `${BACKEND_API_BASE_URL}/files/download?subPath=${currentFilePath}`,
+    () => `${BACKEND_API_BASE_URL}${FilesApiPath.DownloadFile}?subPath=${currentFilePath}`,
     [currentFilePath],
   )
 
