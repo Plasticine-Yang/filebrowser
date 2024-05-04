@@ -12,7 +12,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.3.6",
+    "@filebrowser/shared": "workspace:^",
+    "ahooks": "^3.7.11",
     "antd": "^5.17.0",
+    "axios": "^1.6.8",
+    "immer": "^10.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

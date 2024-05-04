@@ -22,7 +22,7 @@ export function registerApiFiles(fastify: FastifyInstance, options: RegisterApis
 
     const fileInfoList = await getFileInfoList(resolvedPath)
 
-    reply.send(createUniformResponse({ fileInfoList }))
+    reply.send(createUniformResponse(fileInfoList))
   })
 
   fastify.get(FilesApiPath.DownloadFile, async (request, reply) => {

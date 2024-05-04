@@ -1,26 +1,11 @@
-import { memo, useMemo, type FC } from 'react'
-import { Tabs, TabsProps } from 'antd'
+import { Tabs } from 'antd'
+import { memo, type FC } from 'react'
 
-import { ClipboardTab, FileTab } from '@/components'
-
+import { useTabItems } from './hooks'
 import styles from './style.module.scss'
 
 const App: FC = memo(() => {
-  const tabItems = useMemo<TabsProps['items']>(
-    () => [
-      {
-        key: 'file',
-        label: '文件',
-        children: <FileTab />,
-      },
-      {
-        key: 'clipboard',
-        label: '剪切板',
-        children: <ClipboardTab />,
-      },
-    ],
-    [],
-  )
+  const { tabItems } = useTabItems()
 
   return (
     <div className={styles.app}>
